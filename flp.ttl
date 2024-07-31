@@ -1,0 +1,44 @@
+@prefix flp: <https://free.law/vocabulary/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+flp: a skos:ConceptScheme ;
+    dct:title "Legal vocabulary with hierarchy"@en ;
+    dct:creator "Free Law Project"@en ;
+    dct:created "2024-07-31"^^xsd:date ;
+    dct:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    skos:hasTopConcept flp:opinion, flp:citator .
+
+flp:opinion a skos:Concept ;
+    skos:prefLabel "opinion"@en ;
+    skos:altLabel "case"@en ;
+    skos:narrower 
+        flp:majorityOpinion, 
+        flp:concurringOpinion, 
+        flp:dissentingOpinion ;
+    skos:topConceptOf flp: .
+
+flp:majorityOpinion a skos:Concept ;
+    skos:prefLabel "majority opinion"@en ;
+    skos:inScheme flp .
+
+flp:concurringOpinion a skos:Concept ;
+    skos:prefLabel "concurring opinion"@en ;
+    skos:altLabel "concurrence"@en ;
+    skos:inScheme flp .
+
+flp:dissentingOpinion a skos:Concept ;
+    skos:prefLabel "dissenting opinion"@en ;
+    skos:altLabel "dissent"@en ;
+    skos:inScheme flp .
+
+flp:citator a skos:Concept ;
+    skos:prefLabel "citator"@en ;
+    skos:narrower skos:caselawCitator ;
+    skos:topConceptOf flp .
+
+flp:caselawCitator a skos:Concept ;
+    skos:prefLabel "caselaw citator"@en ;
+    skos:related flp:opinion ;
+    skos:inScheme flp .
